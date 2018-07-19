@@ -1,5 +1,5 @@
 .idea
 manifest_inventory
-*.xlsx
+*.csv
 
 inventory.yml

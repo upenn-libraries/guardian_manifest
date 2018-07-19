@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'rubyXL'
+require 'csv'
 require 'yaml'
 
 require 'pry'
@@ -30,36 +30,20 @@ def parse_inventory(yml)
   return inventory
 end
 
-def set_headers(worksheet)
-  HEADERS.each_with_index do |header, index|
-    worksheet.add_cell(0,index, header)
-  end
-end
-
-workbook = RubyXL::Workbook.new
-
-def workbook.worksheet
-  return worksheets[0]
-end
-
-def workbook.set_up_spreadsheet
-  worksheet.sheet_name = 'descriptive'
-  set_headers(worksheet)
-end
-
-def workbook.populate(inventory)
-  inventory.each_with_index do |row, y_index|
-    HEADERS.each_with_index do  |header, x|
-      worksheet.add_cell(y_index+1, x, row[header]) unless row[header].nil?
-    end
-  end
-end
-
-abort('Specify a path to a text manifest') if missing_args?
+abort('Specify a path to a YAML manifest') if missing_args?
 manifest_inventory = ARGV[0]
-spreadsheet_name = ARGV[1].nil? ? 'guardian_manifest.xlsx' : "#{File.basename(ARGV[1], '.*')}.xlsx"
-workbook.set_up_spreadsheet
+file_name = ARGV[1].nil? ? 'guardian_manifest.csv' : "#{File.basename(ARGV[1], '.*')}.csv"
 inventory = parse_inventory(manifest_inventory)
-workbook.populate(inventory)
-workbook.write(spreadsheet_name)
-puts "Spreadsheet written to #{spreadsheet_name}."
+
+CSV.open(file_name, "wb") do |manifest|
+  manifest << HEADERS
+  inventory.each do |line|
+    line_entry = []
+    line.each do |key, value|
+      line_entry << value
+    end
+    manifest << line_entry
+  end
+end
+
+puts "CSV written to #{file_name}."
