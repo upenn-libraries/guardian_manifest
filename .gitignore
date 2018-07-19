@@ -1,3 +1,5 @@
 .idea
 manifest_inventory
 *.xlsx
+
+directive_names.yml
