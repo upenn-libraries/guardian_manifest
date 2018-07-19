@@ -5,7 +5,7 @@ This is a Ruby script to generate CSV manifests for use in the [guardian workflo
 ## Requirements:
 
 * Ruby 2.2.5 or higher
-* A [YAML file](manifest.yml.example) populated with shared manifest data and a list of the directive names of each archive to be transferred to Glacier in this batch with guardian
+* A [YAML file](inventory.yml.example) populated with shared manifest data and a list of the directive names of each archive to be transferred to Glacier in this batch with guardian
 
 ## Usage
 
