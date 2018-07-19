@@ -2,4 +2,4 @@
 manifest_inventory
 *.xlsx
 
-directive_names.yml
+inventory.yml

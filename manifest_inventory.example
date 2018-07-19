@@ -1,3 +1,0 @@
-todo_base|source|workspace|compressed_destination|glacier_description|glacier_vault|application|method
-directive_name_1|/bulwark_gitannex_remote/directive_name_1.git|/zip_workspace|/zip_workspace/directive_name_1.zip|{ description: directive_name_1 , owner: katherly, location: colenda_dev }|stronghold|bulwark|gitannex
-directive_name_2|/bulwark_gitannex_remote/directive_name_2.git|/zip_workspace|/zip_workspace/directive_name_2.zip|{ description: directive_name_2 , owner: katherly, location: colenda_dev }|stronghold|bulwark|gitannex
