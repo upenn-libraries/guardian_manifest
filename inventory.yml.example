@@ -1,0 +1,14 @@
+source: x
+workspace: x
+compressed_destination: x
+compressed_extension: x
+vault: x
+application: x
+method: x
+description_values:
+  owner: x
+  location: x
+directive_names:
+  - dir_name_1
+  - dir_name_2
+  - dir_name_3
