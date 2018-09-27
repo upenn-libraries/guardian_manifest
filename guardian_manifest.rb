@@ -18,9 +18,9 @@ def parse_inventory(yml)
     dir_entry = {}
     dir_entry['todo_base'] = dirname
     yaml['description_values']['description'] = dirname
-    dir_entry['source'] = "/#{yaml['source']}/#{dirname}.git"
+    dir_entry['source'] = "#{yaml['source']}/#{dirname}.git"
     dir_entry['workspace'] = "/#{yaml['workspace']}"
-    dir_entry['compressed_destination'] = "#{yaml['compressed_destination']}/#{dirname}.#{yaml['compressed_extension']}"
+    dir_entry['compressed_destination'] = "/#{yaml['compressed_destination']}/#{dirname}.#{yaml['compressed_extension']}"
     dir_entry['glacier_description'] = yaml['description_values'].to_s
     dir_entry['glacier_vault'] = yaml['vault']
     dir_entry['application'] = yaml['application']
