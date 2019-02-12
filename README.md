@@ -29,6 +29,7 @@ The YAML inventory used to populate the guardian manifest should be in the follo
 
 ```YAML
 source: x
+source_type: x
 workspace: x
 compressed_destination: x
 compressed_extension: x
@@ -49,6 +50,12 @@ The values should correspond to:
 * `source` - The source on guardian for the content that will populate the archive
   * Valid term(s) for use with the Docker deployment:
     * `bulwark_gitannex_remote`
+    * NFS path to the directory containing the directories listed in `directortive_names`
+
+* `source_type` - The type of source for the content. If the type `git` is present, `.git` is appended to the `directive_name` value.
+  * Valid term(s) for use with the Docker deployment:
+    * `git` for source `bulwark_gitannex_remote`
+    * `directory` (or blank) for OPenn/rsync archives
 
 * `workspace` - The path on guardian where the archive will be pulled from the source and assembled into its compressed for
   * Valid term(s) for use with the Docker deployment:
@@ -68,11 +75,13 @@ The values should correspond to:
 
   * Supported application(s)
     * `bulwark`
+    * `openn`
 
 * `method` - The retrieval method required by the application to pull source content to the workspace so that it can be compressed and transferred
 
   * Supported method(s)
     * `gitannex`
+    * `rsync`
 
 * `description_values` - The key/value store of data apart from the directive name to add to the JSON blob of metadata for each archive transferred to Glacier.  The values `owner` and `location` are prepopulated in the example above, and any other key/value pairings can be added to the description metadata in the same way to your YAML file.
 

@@ -5,7 +5,7 @@ require 'yaml'
 
 require 'pry'
 
-HEADERS = %w[todo_base source workspace compressed_destination glacier_description glacier_vault application method]
+HEADERS = %w[todo_base source source_type workspace compressed_destination glacier_description glacier_vault application method]
 
 def missing_args?
   return ARGV[0].nil?
@@ -18,7 +18,9 @@ def parse_inventory(yml)
     dir_entry = {}
     dir_entry['todo_base'] = dirname
     yaml['description_values']['description'] = dirname
-    dir_entry['source'] = "/#{yaml['source']}/#{dirname}.git"
+    dir_entry['source'] = "/#{yaml['source']}/#{dirname}"
+    dir_entry['source_type'] = yaml['source_type']
+    dir_entry['source'] += '.git' if yaml['source_type'] == 'git'
     dir_entry['workspace'] = "/#{yaml['workspace']}"
     dir_entry['compressed_destination'] = "#{yaml['compressed_destination']}/#{dirname}.#{yaml['compressed_extension']}"
     dir_entry['glacier_description'] = yaml['description_values'].to_s
