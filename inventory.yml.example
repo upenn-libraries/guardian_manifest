@@ -1,4 +1,5 @@
 source: x
+source_type: x
 workspace: x
 compressed_destination: x
 compressed_extension: x
