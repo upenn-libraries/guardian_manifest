@@ -15,7 +15,7 @@ To generate a guardian-compliant CSV, issue the following command from the termi
 ruby guardian_manifest.rb inventory.yml
 ```
 
-Where `inventory.yml` is the path to the YAML file you are using to create this manifest.  
+Where `inventory.yml` is the path to the YAML file you are using to create this manifest.
 
 This will output a CSV manifest called `guardian_manifest.csv` in the directory where the command was run.  If you wish to override the default, you can provide a custom filename at which the manifest will be saved locally, as an optional third argument like so:
 
@@ -29,10 +29,11 @@ The YAML inventory used to populate the guardian manifest should be in the follo
 
 ```YAML
 source: x
-source_type: x
 workspace: x
 compressed_destination: x
 compressed_extension: x
+verification_destination: x
+verification_sample_size: x
 vault: x
 application: x
 method: x
@@ -52,11 +53,6 @@ The values should correspond to:
     * `bulwark_gitannex_remote`
     * NFS path to the directory containing the directories listed in `directortive_names`
 
-* `source_type` - The type of source for the content. If the type `git` is present, `.git` is appended to the `directive_name` value.
-  * Valid term(s) for use with the Docker deployment:
-    * `git` for source `bulwark_gitannex_remote`
-    * `directory` (or blank) for OPenn/rsync archives
-
 * `workspace` - The path on guardian where the archive will be pulled from the source and assembled into its compressed for
   * Valid term(s) for use with the Docker deployment:
     * `zip_workspace`
@@ -66,8 +62,18 @@ The values should correspond to:
     * `zip_workspace`
 
 * `compressed_extension` - The file extension of the compressed archive
-    * Valid term(s) for use with the guardian codebase:
-      * `zip`
+  * Valid term(s) for use with the guardian codebase:
+    * `zip`
+
+* `verification_sample_size` - Optional; the proportion of archives for which for to perform post-compression contents verification
+  * guardian_manifest will set `verify_compressed_archive` to `true` for a random selection of directive names in the specified proportion
+  * Valid values for use with guardian_manifest:
+    * `ALL`
+    * a fractional proportion like `7/10` or `33 / 100`
+
+* `verification_destination` - Required if `verification_sample_size` is specified; the path on guardian where the compressed archive will be decompressed to verify the integrity of compressed archive contents.
+  * Valid terms for use with the Docker deployment:
+    * `zip_workspace`
 
 * `vault` - The name of the [Glacier vault](https://docs.aws.amazon.com/amazonglacier/latest/dev/working-with-vaults.html) where the archive will be transferred
 
@@ -85,7 +91,7 @@ The values should correspond to:
 
 * `description_values` - The key/value store of data apart from the directive name to add to the JSON blob of metadata for each archive transferred to Glacier.  The values `owner` and `location` are prepopulated in the example above, and any other key/value pairings can be added to the description metadata in the same way to your YAML file.
 
-* `directive_names` - A multi-valued list of the directive names of each object to have an archive generated and transferred to Glacier.  
+* `directive_names` - A multi-valued list of the directive names of each object to have an archive generated and transferred to Glacier.
 
 ## Contributing
 
