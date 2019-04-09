@@ -1,8 +1,10 @@
+---
 source: x
-source_type: x
 workspace: x
 compressed_destination: x
 compressed_extension: x
+verification_destination: x
+verification_sample_size: x
 vault: x
 application: x
 method: x

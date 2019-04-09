@@ -167,8 +167,7 @@ def validate_yaml(yaml_data)
     raise "Invalid verification_sample_size: '#{yaml_data['verification_sample_size']}' (expected 'ALL' or a proportion, like '1/10')"
   end
 
-  verification_destination = yaml_data['verification_destination'].to_s.strip
-  if verification_destination.empty?
+  if yaml_data['verification_destination'].to_s.strip.empty?
     raise "'verification_destination' must be provided if 'verification_sample_size' is set"
   end
 end
