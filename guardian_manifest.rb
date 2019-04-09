@@ -209,13 +209,14 @@ manifest_inventory = ARGV[0]
 file_name = ARGV[1].nil? ? 'guardian_manifest.csv' : "#{File.basename(ARGV[1], '.*')}.csv"
 inventory = parse_inventory(manifest_inventory)
 
+# Determine the headers present in the inventory YAML
 actual_headers = DEFAULT_HEADERS.dup
 # check for optional columns
 actual_headers.delete('verification_destination') unless inventory.first['verification_destination']
 actual_headers.delete('verify_compressed_archive') unless inventory.first['verification_destination']
 
 CSV.open(file_name, "wb", :headers => true) do |manifest|
-  manifest << DEFAULT_HEADERS
+  manifest << actual_headers
   inventory.each do |entry|
     manifest << entry
   end
