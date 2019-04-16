@@ -89,7 +89,7 @@ end
 # @return [String] absolute path to the object-specific verification workspace directory
 def build_verification_dir(root_dir, dirname, uuid)
   return unless root_dir
-  "/#{root_dir}/#{dirname}-#{uuid}"
+  "/#{root_dir}/#{dirname}-#{uuid}/#{dirname}"
 end
 
 ##
