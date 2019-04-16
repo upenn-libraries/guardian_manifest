@@ -37,7 +37,7 @@ end
 def build_source(method, source, dirname)
   case method
   when 'gitannex'
-    "/#{source}/#{dirname}.git"
+    "#{source}/#{dirname}.git"
   when 'rsync'
     "#{source}/#{dirname}"
   else
