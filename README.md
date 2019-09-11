@@ -37,6 +37,7 @@ verification_sample_size: x
 vault: x
 application: x
 method: x
+todo_prefix: x
 description_values:
   owner: x
   location: x
@@ -88,6 +89,8 @@ The values should correspond to:
   * Supported method(s)
     * `gitannex`
     * `rsync`
+
+* `todo_prefix` - an optional value to prepend to each directive name in the `todo_base` in the output CSV; e.g., if `todo_prefix` is `0030_`, `todo_base` values will be `0030_dir_name_1`, `0030_dir_name_2`, etc.
 
 * `description_values` - The key/value store of data apart from the directive name to add to the JSON blob of metadata for each archive transferred to Glacier.  The values `owner` and `location` are prepopulated in the example above, and any other key/value pairings can be added to the description metadata in the same way to your YAML file.
 
