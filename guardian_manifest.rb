@@ -183,7 +183,7 @@ def parse_inventory(yml)
     compressed_dest = build_compressed_dest(yaml['compressed_destination'], dirname, uuid, yaml['compressed_extension'])
     verification_dir = build_verification_dir(yaml['verification_destination'], dirname, uuid)
     dir_entry = {}
-    dir_entry['todo_base'] = dirname
+    dir_entry['todo_base'] = "#{yaml['todo_prefix']}#{dirname}"
     dir_entry['id'] = dir_entry['todo_base']
     yaml['description_values']['description'] = dirname
     dir_entry['source'] = build_source(yaml['method'], yaml['source'], dirname)
